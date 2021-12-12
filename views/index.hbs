@@ -1,0 +1,31 @@
+<div class="container index_body">
+    <div class="row_index">
+        <h1 class="index_title">Node Chat！</h1>
+    </div>
+    <div class="row_index">
+        <form method="post" action="/room">
+            <div class="index-user_name">
+                ユーザ名
+                <input type="text" id="userName" name="userName" class="index-user_name_text">
+            </div>
+            <div class="index-user_pass">
+                パスワード
+                <input type="text" id="userPass" name="userPass" class="index-user_pass_text">
+            </div>
+            <div class="index-selsect_room">
+                ルーム選択
+                <select id="roomNum" name="roomNum">
+                    <option value="Room1">Room1</option>
+                    <option value="Room2">Room2</option>
+                    <option value="Room3">Room3</option>
+                </select>
+            </div>
+            <div class="index-enter">
+                <input type="button" value="入室する" class="common-button index-enter_button" onclick="enter();">
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/javascripts/socket.js"></script>
+<script src="/javascripts/index.js"></script>

@@ -1,0 +1,71 @@
+<div class="container">
+    <header class="header">
+        <ul>
+            <li class="header_list">
+                <div class="room-exit">
+                    <form action="/" method="POST" class="exit_form">
+                        <input type="button" value="退室する" class="common-button room-exit_button" onclick="exit();">
+                    </form>
+                </div>
+            </li>
+            <li class="header_list">
+                <div class="room-login_user">
+                ログインユーザ：{{userName}}さん
+                <input id="userName" type="hidden" value= "{{userName}}" >
+                <input id="roomNum" type="hidden" value= "{{roomNum}}" >
+                <input id="userPass" type="hidden" value= "{{userPass}}" >
+                </div>
+            </li>
+            <li class="header_list menber">参加メンバー ▼
+                <ul id="talk_member" class="flex"></ul>
+            </li>
+        </ul>
+    </header>
+    <div class="row chat_body">
+        <div class="room-thread">
+            <label for="sort_checkbox">投稿を古い物順に表示する</label><input id="sort_checkbox" type="checkbox" class="hidden" >
+            <label for="minute_checkbox">1分間に1回の投稿にする</label><input id="minute_checkbox" type="checkbox" class="hidden" >
+            <div id="thread"></div>
+        </div>
+        <div class="room_form">
+            <form method="post " action="/">
+                <div class="flex">
+                    <div class="room-submit">
+                        <input type="button" value="メモ" class="common-button room-memo_button" onclick="memo();">
+                    </div>
+                    <div class="room-message">
+                        <textarea id="message" rows="4" class="room-message_textarea" placeholder="投稿文を入力してください"></textarea>
+                    </div>
+                    <div class="room-submit">
+                        <input type="button" value="投稿" class="common-button room-publish_button" onclick="publish();">
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script src="/javascripts/socket.js"></script>
+<script src="/javascripts/enter.js"></script>
+<script src="/javascripts/publish.js"></script>
+<script src="/javascripts/memo.js"></script>
+<script src="/javascripts/exit.js"></script>
+<script>
+    var btn = document.getElementById('publish_button');
+
+    // Enterキー押下時、送信処理が実行する
+    window.document.onkeydown = function(event){
+        // 全角入力かどうかの分岐
+        if( event.isComposing ) {
+            console.log("入力中");
+        }
+        else if (event.key === 'Enter') {
+            // 改行を無効化
+            event.preventDefault();
+            // 投稿のinputのonclickのメソッドを呼び出す
+            publish(); 
+        }
+    }
+</script>
